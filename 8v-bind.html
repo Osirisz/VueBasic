@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      .status-active{
+        color: blue;
+        background-color: chartreuse;
+      }
+      .status-inactive{
+        color: gray;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div-app">
+      <div v-for="d in documents" v-bind:class="{'status-active' : d.status=='A', 'status-inactive' : d.status=='I'}">
+          Code : {{d.code}}, Title : {{d.title}}, Status : {{d.status | statusName}}<br />
+          <button v-on:click="d.status='A'">Set Active</button>
+          <button v-on:click="d.status='I'">Set Inactive</button>
+      </div>
+        <input type="text" v-bind="{'value' : name, 'readonly':setReadonly}"/><br />
+        <button v-on:click="setReadonly=!setReadonly">Set readonly</button>
+    </div>
+  </body>
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+  var vm = new Vue({
+    el : "#div-app",
+    data : {
+      documents : [
+        {code : "C-1", title : "111", status : "A"},
+        {code : "C-2", title : "222", status : "I"},
+        {code : "C-3", title : "333", status : "A"}
+      ],
+      name : "Earthz",
+      setReadonly : false
+    },
+    filters : {
+      statusName : function(name){
+        if(name=="A"){
+          name="Active";
+        } else{
+          name="Inactive";
+        }
+        return name;
+      }
+    }
+
+  });
+</script>

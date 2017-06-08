@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div-app">
+      <div v-for="cust in customer">
+        ID : {{cust.id}} Name : {{cust.name}}
+      </div>
+
+      <table border=1px width=500px>
+        <tbody>
+          <thead>
+            <tr>
+              <td>No.</td>
+              <td>ID</td>
+              <td>Name</td>
+              <td>Number of order</td>
+              <td>Order</td>
+            </tr>
+          </thead>
+           <tr v-for="(cust,no) in customer">  <!--noใช้เป็นตัวแปรอ้างอิงนับบรรทัด -->
+            <td>{{no+1}}</td>
+            <td>{{cust.id}}</td>
+            <td>{{cust.name}}</td>
+            <td>Order {{cust.orders.length}}</td>
+            <td>
+              <table>
+                <tbody>
+                  <tr v-for="order in cust.orders"> ต้องอ้างจากcustมาด้วยเพราะเป็นnested loop
+                    <td>{{order.orderNo}}</td>
+                    <td>{{order.total}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+  var vm = new Vue({
+    el : "#div-app",
+    data : {
+      customer : []
+    },
+    mounted : function(){
+      this.customer.push({id : "C-1",name : "Earthz",orders : [
+        {orderNo : "ORDER-1",total : 500},
+        {orderNo : "ORDER-2",total : 1500}
+      ]});
+      this.customer.push({id : "C-2",name : "Osirisz",orders : []});
+      this.customer.push({id : "C-3",name : "Pandora",orders : []});
+    }
+  });
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div-app">
+      <button v-on:click="clickMe()">Click</button>
+      <input type="text" v-on:keydown="keydown()" v-model="name" /><br />
+      <span>{{name}}</span><br />
+      <img src="" style="width:100px; height:100px; background-color:black;"
+        v-on:mouseover="mouseover()" v-on:mouseout="mouseout()" v-on:click="message='ClickIMG'"
+      />
+      <div>
+        {{message}}
+      </div>
+    </div>
+  </body>
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+  var vm = new Vue({
+      el : "#div-app",
+      data : {
+        name : "",
+        message : ""
+      },
+      methods : {
+        clickMe : function(){
+          alert("Click");
+        },
+        keydown : function(){
+          console.log("keyDown");
+        },
+        mouseover : function(){
+          this.message="mouseover";
+        },
+        mouseout : function(){
+          this.message="mouseout";
+        }
+      }
+  });
+</script>

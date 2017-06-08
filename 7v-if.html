@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div-app">
+      <h1>Order</h1>
+      <button v-if="!newOrder" v-on:click="newOrder=true">New Order</button>
+      <div v-if="!newOrder" v-for="cust in custs" style="background-color:#e5e5e5; margin : 10px ; padding : 5px;">
+        ID : {{cust.id}}<br />
+        Status : {{cust.status | statusName}}<br />
+        <button>View</button>
+        <button v-if="cust.status=='P'">Cancel</button><br /><br />
+      </div>
+      <div v-if="newOrder">
+        ID<input type="text" /><br />
+        Status<input type="text" /><br />
+        <button v-on:click="newOrder=false">Back</button>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+  var vm = new Vue({
+    el : "#div-app",
+    data : {
+      custs : [
+        {id : 1, status : "A"},
+        {id : 2, status : "P"}
+      ],
+      newOrder : false
+    },
+    filters : {
+      statusName : function(status){
+        if(status=="A") status = "Approve";
+        if(status=="P") status = "Process";
+        return status;
+      }
+    }
+  });
+</script>

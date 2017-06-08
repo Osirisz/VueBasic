@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="div-app">
+        <input type="text" v-model="name" />
+        <span>Hello {{name}}</span><br /><br />
+        <textarea v-model="article"></textarea><br />
+        <span>{{article}}</span><br /><br />
+    </div>
+    <div id="div-app2">
+        <select v-model="Customer.code">
+          <option value="C-01">C-01</option>
+          <option value="C-02">C-02</option>
+          <option value="C-03">C-03</option>
+        </select>
+        First Name<input type="text" v-model="Customer.fName" />
+        Last Name<input type="text" v-model="Customer.lName" /><br />
+        Customer Data ID : {{Customer.id}}<br />
+        Code : {{Customer.code}}<br />
+        First Name : {{Customer.fName}}<br />
+        Last Name : {{Customer.lName}}
+    </div>
+</body>
+
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#div-app",
+        data: {
+            name: "Osirisz",
+            article: ""
+        }
+    });
+    var vm2 = new Vue({
+        el: "#div-app2",
+        data: {
+            Customer: {
+                id: 1,
+                code: "C-02",
+                fName: "",
+                lName: ""
+            }
+        }
+    });
+</script>

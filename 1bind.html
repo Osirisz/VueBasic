@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div-view">
+      <h1>{{title}}</h1>
+      <h2>{{codeBy}}</h2>
+    </div>
+  </body>
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+  var vm = new Vue({
+      el : "#div-view",
+      data : {
+        title : "Hello Vue",
+        codeBy : "Osirisz"
+      }
+  });
+</script>

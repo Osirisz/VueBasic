@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div-app">
+      {{firstname[0]}} {{lastname[0]}}<br />
+      {{firstname[1]}} {{lastname[1]}}<br />
+      <button v-on:click="loadData()">Click</button>
+    </div>
+  </body>
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+  var vm = new Vue({
+      el : "#div-app",
+      data : {
+        firstname : [],
+        lastname : []
+      },
+      methods : {
+        loadData : function(){
+          this.firstname.push("Earthz");  //pushใช้ยัดข้อมูลลงarray
+          this.lastname.push("Osirisz");
+
+          this.firstname.push("N");
+          this.lastname.push("Pandora");
+
+          this.firstname.push("N");
+          this.lastname.push("Pandora");
+        }
+      },
+      mounted : function(){ //เอาไว้เรียกcall back คือเมื่อพร้อมทำงานก็จะเรียกสิ่งที่อยู่ในcall backเลยอัตโนมัติ
+        //this.loadData();
+      }
+  });
+</script>

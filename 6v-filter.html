@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div-app">
+      <div v-for="cust in custs">
+        ID : {{cust.id}} , Name : {{cust.name | toUpper(123,456)}}
+      </div>
+    </div>
+<hr />
+    <div id="div-app2">
+      <div v-for="pro in profile">
+        No : {{pro.no | profileCode}} , Name : {{pro.name | capitalize}}
+      </div>
+    </div>
+  </body>
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+  Vue.filter("toUpper",function(data,p1,p2){  //filterแบบGlobal "filter"ไม่ต้องมีsเพราะเป็นอันเดียว
+    if(p1==undefined) p1="";
+    if(p2==undefined) p2="";
+    return data.toUpperCase()+" "+p1+" "+p2;
+  });
+
+  var vm = new Vue({
+    el : "#div-app",
+    data : {
+      custs : [
+        {id : 1, name : "aaa"},
+        {id : 2, name : "bbb"}
+      ]
+    }
+  });
+
+  var vm2 = new Vue({
+    el : "#div-app2",
+    data : {
+      profile : [
+        {no : 111 , name : "earthz"},
+        {no : 222 , name : "osirisz"}
+      ]
+    },
+    filters : {   //filters แบบ local "filters"จะมี s เพราะมี filter หลายตัว
+      toUpperLocal : function(data){
+          return data.toUpperCase();
+      },
+      capitalize : function(data2){
+        //data2 = data2.substring(0,1).toUpperCase()+data2.substring(1,data2.length);  //เขียนแบบทั่วไป
+        data2 = data2[0].toUpperCase() + data2.slice(1)   //เขียนแบบVue sliceจะเอาตั้งแต่ตำแหน่ง1ไปจนถึงlengthมาแสดง
+        return data2;
+      },
+      profileCode : function(data3){
+        return "P-"+data3;
+      }
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+segd

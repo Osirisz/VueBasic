@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div-app">
+      {{fullname}}<br />
+      Firstname<input type="text" v-model="firstname" />
+      Lastname<input type="text" v-model="lastname" />
+      <hr />
+    </div>
+
+    <div id="div-app2">
+      {{firstname}} {{lastname}}
+    </div>
+  </body>
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+  var data = {    //ประกาศdataแยกออกมาจากในClass
+    firstname : "",
+    lastname : ""
+  }
+  var vm = new Vue({
+      el : "#div-app",
+      data : data,
+      methods : {
+        loadData : function(){
+          this.firstname = "Earthz";
+          this.lastname = "Osirisz";
+        }
+      },
+      computed : {
+        fullname : function(){
+          return "Mr. "+ this.firstname+" "+this.lastname;
+        }
+      },
+      mounted : function(){
+        this.loadData();
+      }
+  });
+
+  var vm2 = new Vue({
+      el : "#div-app2",
+      data : data
+  });
+</script>

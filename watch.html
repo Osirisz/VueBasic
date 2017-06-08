@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="count++">In</button>
+      <button v-on:click="secCount++">In2</button>
+      <p>
+        Count: {{count}} / {{secCount}}
+      </p>
+      <p>
+        Result: {{result()}} / {{output}}
+      </p>
+    </div>
+  </body>
+</html>
+<script src="script/vue.min.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      count: 0,
+      secCount: 0,
+    },
+    computed: {
+      output: function(){
+        console.log('computed');
+        return this.count > 5 ? 'Greater 5' : 'Smaller 5';
+      }
+    },
+    watch: {
+      count: function(value){
+         var vm = this;
+         setTimeout(function(){
+           vm.count = 0;
+         },2000);
+      }
+    },
+    methods: {
+      result: function(){
+        console.log('method');
+        return this.count > 5 ? 'Greater 5' : 'Smaller 5';
+      }
+    }
+  });
+</script>
